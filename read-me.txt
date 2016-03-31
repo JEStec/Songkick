@@ -1,0 +1,17 @@
+Songkick final project uses express 
+
+To run: 
+- open command window in Songkick directory
+- run command "node rest.js"
+- open Firefox or Safari to 127.0.0.1:8081
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+To test "age" filtering:
+- use artist Skrillex since he has an upcoming 19+ show (19+ shows up with option 18+ but not 21+)
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+Genre left out of final version since genre is known if artist is required 
+Price left out of final version since ticket information is separate from Songkick API
+

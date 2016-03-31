@@ -1,0 +1,102 @@
+<!-- author: J.Stec ; 
+     Final Project: Concert search using Songkick API --> 
+	 
+<!DOCTYPE html> 
+<html ng-app="SearchForm"> 
+<head> 
+	<!-- Required -->
+	<title> 
+		Search concerts and other music events!
+	</title>
+	<link rel="stylesheet" href="../required/bootstrap.min.css">
+	<script type="text/javascript" src="../required/angular.min.js"></script>
+	<script src="../required/jquery-1.12.0.js"></script>
+    <link rel="stylesheet" href="../required/jquery-ui-1.11.4/jquery-ui.min.css">
+    <script src="../required/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+	<script src="app.js"></script>
+ </head>
+<body>
+	<!-- Site Header --> 
+	<header> 
+		<h1 class = "text-center">Search Concerts</h1> 
+		<br><br>
+	</header>
+	
+	<!-- Container for info that user enters-->
+	<div class="container" name="enter-info-group">
+		<!-- Concert form -->
+		<form class="form-horizontal" role="form" ng-controller="resultController" name="concertForm">
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="artist">Artist:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="artist" ng-model="artistMod" placeholder="Enter artist" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="event">Event:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="event" ng-model="eventMod" placeholder="Enter event">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="venue">Venue:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="venue" ng-model="venueMod" placeholder="Enter venue">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="location">Location:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="location" ng-model="locationMod" placeholder="Enter location, Example: Chicago, IL, US">
+				</div>
+			</div>
+			<div class="form-group">
+				<!-- Enter Date using datepicker -->
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="date">Date:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="dateID" ng-model="dateMod" placeholder="Enter Date">
+                    </div>
+                </div>
+			</div>
+			<div class="form-group">
+				<!-- Drop-down for age -->
+				<label class="control-label col-sm-4" for="age">Age:</label>
+				<div class="col-sm-5">
+					<select class="form-control" id="select-age" ng-model="ageMod">
+						<option>All</option>
+						<option>All ages</option>
+						<option>21+</option>
+						<option>18+</option>
+					</select>
+				</div>
+			</div>
+			<br><br>
+			<center>
+				<!-- Submit button - calls getJSON() -->
+				<button type="submit" class="btn btn-success btn-lg" ng-click="getJSON()">Search for concerts!</button>
+				<br><br><br>
+				<div class="container" name="concert-results-group" ng-show="showResults" ng-repeat="event in songkickData">
+					<div class="panel panel-default">
+						<!-- extract data per index in Songkick data -->
+						<div class="panel-heading">
+							<h3 style="font-weight: bold;">{{event.start.date}}</h3>
+						</div>
+						<div class="panel-body">
+							<h4><span style="color: green">{{event.performance[0].displayName}}</span></h4>
+							<br>
+							<strong>Event: </strong>{{event.type}}
+							<br>
+							<strong>Venue: </strong>{{event.venue.displayName}}
+							<br>
+							<strong>Location: </strong>{{event.location.city}}	
+							<br>
+							<strong><span style="color: red">{{event.ageRestriction}}</span></strong>
+						</div>
+					</div>
+				</div>			
+			</center>
+		</form>	
+	</div>
+</body>
+</html>
